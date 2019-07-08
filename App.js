@@ -2,16 +2,20 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  StatusBar,
 } from 'react-native';
+import { LinearGradient } from 'expo';
+import { primaryGradientArray } from './src/assets/Colors';
 import Main from './src/screens/Main';
 
 export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Main />
-      </View>
+      <LinearGradient colors={primaryGradientArray} style={styles.container}>
+        <StatusBar barStyle={"light-content"} />
+        <Text style={styles.title}>Open up App.js to start working on your app!</Text>
+      </LinearGradient>
     );
   }
 }
@@ -19,8 +23,10 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
+  title: {
+    color: 'white',
+  }
 });
