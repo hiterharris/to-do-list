@@ -14,7 +14,7 @@ export default class App extends Component {
     return (
       <LinearGradient colors={primaryGradientArray} style={styles.container}>
         <StatusBar barStyle={"light-content"} />
-        <Text style={styles.title}>Open up App.js to start working on your app!</Text>
+        <Main />
       </LinearGradient>
     );
   }
@@ -23,10 +23,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
-  title: {
-    color: 'white',
-  }
 });
