@@ -29,6 +29,7 @@ export default class List extends Component {
     };
     render() {
         const { text, deleteItem, id, isCompleted } = this.props;
+
         return (
             <View style={styles.container}>
                 <View style={styles.column}>

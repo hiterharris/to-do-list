@@ -15,9 +15,11 @@ import uuid from 'uuid/v1';
 import Header from '../components/Header';
 import Input from '../components/Input';
 import List from '../components/List';
-// import Button from '../components/Button';
-// import SubTitle from './components/SubTitle';
+import Button from '../components/Button';
+import SubTitle from '../components/SubTitle';
+
 const headerTitle = "To Do List";
+
 export default class Main extends Component {
     state = {
         inputValue: '',
@@ -25,14 +27,17 @@ export default class Main extends Component {
         allItems: {},
         isCompleted: false,
     };
+
     componentDidMount = () => {
         this.loadingItems();
     };
+
     newInputValue = value => {
         this.setState({
             inputValue: value,
         });
     };
+
     loadingItems = async () => {
         try {
             const allItems = await AsyncStorage.getItem('ToDos');
@@ -44,6 +49,7 @@ export default class Main extends Component {
             console.log(err);
         }
     };
+
     onDoneAddItem = () => {
         const { inputValue } = this.state;
         if (inputValue !== '') {
@@ -70,6 +76,7 @@ export default class Main extends Component {
             });
         }
     };
+
     deleteItem = id => {
         this.setState(prevState => {
             const allItems = prevState.allItems;
@@ -82,12 +89,13 @@ export default class Main extends Component {
             return { ...newState };
         });
     };
+
     completeItem = id => {
         this.setState(prevState => {
             const newState = {
                 ...prevState,
                 allItems: {
-                    ...prevState,
+                    ...prevState.allItems,
                     [id]: {
                         ...prevState.allItems[id],
                         isCompleted: true,
@@ -98,6 +106,7 @@ export default class Main extends Component {
             return { ...newState };
         });
     };
+
     incompleteItem = id => {
         this.setState(prevState => {
             const newState = {
@@ -114,19 +123,23 @@ export default class Main extends Component {
             return { ...newState };
         });
     };
-    deleteItems = async () => {
+
+    deleteAllItems = async () => {
         try {
-            await AsyncStorage.removeItem('ToDos');
+            await AsyncStorage.removeItem('Todos');
             this.setState({ allItems: {} });
         } catch (err) {
             console.log(err);
         }
     };
+
     saveItems = newItem => {
-        const saveItem = AsyncStorage.setItem('To Dos', JSON.stringify(newItem));
+        const saveItem = AsyncStorage.setItem('Todos', JSON.stringify(newItem));
     };
+
     render() {
         const { inputValue, loadingItems, allItems } = this.state;
+
         return (
             <LinearGradient colors={primaryGradientArray} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -134,18 +147,17 @@ export default class Main extends Component {
                     <Header title={headerTitle} />
                 </View>
                 <View style={styles.inputContainer}>
-                    {/* <SubTitle subtitle={"What's Next?"} /> */}
                     <Input
                         inputValue={inputValue}
                         onChangeText={this.newInputValue}
-                        onDoneItem={this.onDoneAddItem}
+                        onDoneAddItem={this.onDoneAddItem}
                     />
                 </View>
                 <View style={styles.list}>
                     <View style={styles.column}>
-                        {/* <SubTitle subtitle={'Recent Notes'} /> */}
+                        <SubTitle subtitle={'Recent Notes'} />
                         <View style={styles.deleteAllButton}>
-                            {/* <Button deleteAllItems={this.deleteAllItems} /> */}
+                            <Button deleteAllItems={this.deleteAllItems} />
                         </View>
                     </View>
                     {loadingItems ? (
@@ -170,6 +182,7 @@ export default class Main extends Component {
         );
     }
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1

@@ -10,7 +10,7 @@ const Input = ({ inputValue, onChangeText, onDoneAddItem }) => (
         style={styles.input}
         value={inputValue}
         onChangeText={onChangeText}
-        placeholder="Type here to add note."
+        placeholder="+ Add Note"
         placeholderTextColor={inputPlaceholder}
         multiline={true}
         autoCapitalize="sentences"
