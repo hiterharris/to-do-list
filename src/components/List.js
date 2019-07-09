@@ -5,7 +5,7 @@ import {
     Dimensions,
     StyleSheet,
     TouchableOpacity,
-    Platform
+    Platform,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import {
@@ -16,7 +16,7 @@ import {
     deleteIconColor
 } from '../assets/Colors';
 
-const { height, width } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export default class List extends Component {
     onToggleCircle = () => {
@@ -24,7 +24,7 @@ export default class List extends Component {
         if (isCompleted) {
             incompleteItem(id);
         } else {
-            completeItem(id)
+            completeItem(id);
         }
     };
     render() {
@@ -33,23 +33,25 @@ export default class List extends Component {
             <View style={styles.container}>
                 <View style={styles.column}>
                     <TouchableOpacity onPress={this.onToggleCircle}>
-                        <View style={[
-                            styles.circle,
-                            isCompleted
-                                ? { borderColor: circleActive }
-                                : { borderColor: circleInactive }
-                        ]}
+                        <View
+                            style={[
+                                styles.circle,
+                                isCompleted
+                                    ? { borderColor: circleActive }
+                                    : { borderColor: circleInactive }
+                            ]}
                         />
                     </TouchableOpacity>
-                    <Text style={[
-                        styles.text,
-                        isCompleted
-                            ? {
-                                color: itemListTextStrike,
-                                textDecorationLine: 'line-through'
-                            }
-                            : { color: itemListText }
-                    ]}>
+                    <Text
+                        style={[
+                            styles.text,
+                            isCompleted
+                                ? {
+                                    color: itemListTextStrike,
+                                    textDecorationLine: 'line-through'
+                                }
+                                : { color: itemListText }
+                        ]}>
                         {text}
                     </Text>
                 </View>
@@ -78,7 +80,8 @@ const styles = StyleSheet.create({
         height: width / 8,
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginVertical: 5,
+        marginTop: 5,
+        marginBottom: 10,
         ...Platform.select({
             ios: {
                 shadowColor: 'rgb(50,50,50)',

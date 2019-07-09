@@ -153,13 +153,13 @@ export default class Main extends Component {
                             {Object.values(allItems)
                                 .reverse()
                                 .map(item => (
-                                    {/* <List
+                                    <List
                                         key={item.id}
                                         {...item}
                                         deleteItem={this.deleteItem}
                                         completeItem={this.completeItem}
                                         incompleteItem={this.incompleteItem}
-                                    /> */}
+                                    />
                                 ))}
                         </ScrollView>
                     ) : (
